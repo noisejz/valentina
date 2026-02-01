@@ -1,0 +1,269 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Valentine's romantic palette */
+    --background: 350 100% 98%;
+    --foreground: 350 30% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 350 30% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 350 30% 20%;
+
+    --primary: 350 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 350 60% 92%;
+    --secondary-foreground: 350 30% 25%;
+
+    --muted: 350 30% 95%;
+    --muted-foreground: 350 20% 45%;
+
+    --accent: 340 90% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 350 30% 88%;
+    --input: 350 30% 88%;
+    --ring: 350 80% 60%;
+
+    --radius: 1rem;
+
+    /* Custom Valentine colors */
+    --heart-pink: 350 85% 65%;
+    --heart-red: 350 90% 55%;
+    --heart-light: 350 100% 92%;
+    --heart-glow: 350 100% 75%;
+    --cream: 40 50% 96%;
+    --love-letter: 45 60% 94%;
+    --letter-lines: 350 30% 80%;
+
+    /* Fonts */
+    --font-romantic: 'Dancing Script', cursive;
+    --font-body: 'Quicksand', sans-serif;
+  }
+
+  .dark {
+    --background: 350 30% 8%;
+    --foreground: 350 20% 95%;
+
+    --card: 350 30% 12%;
+    --card-foreground: 350 20% 95%;
+
+    --popover: 350 30% 12%;
+    --popover-foreground: 350 20% 95%;
+
+    --primary: 350 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 350 30% 18%;
+    --secondary-foreground: 350 20% 90%;
+
+    --muted: 350 30% 18%;
+    --muted-foreground: 350 20% 65%;
+
+    --accent: 340 90% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 350 30% 20%;
+    --input: 350 30% 20%;
+    --ring: 350 80% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-romantic);
+  }
+}
+
+@layer components {
+  .romantic-title {
+    font-family: var(--font-romantic);
+    @apply text-4xl md:text-6xl text-primary font-bold;
+  }
+
+  .love-letter-text {
+    font-family: var(--font-romantic);
+    @apply text-lg md:text-xl leading-relaxed;
+    color: hsl(var(--foreground));
+  }
+
+  .heart-button {
+    @apply cursor-pointer transition-all duration-150 hover:scale-110 active:scale-95;
+    filter: drop-shadow(0 4px 8px hsl(var(--heart-pink) / 0.4));
+  }
+
+  .heart-button:active {
+    filter: drop-shadow(0 2px 4px hsl(var(--heart-pink) / 0.3));
+  }
+
+  .floating-hearts {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .letter-paper {
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--love-letter)) 0px,
+      hsl(var(--love-letter)) 28px,
+      hsl(var(--letter-lines)) 28px,
+      hsl(var(--letter-lines)) 29px
+    );
+    background-size: 100% 29px;
+    @apply rounded-lg shadow-xl p-8;
+    border: 3px solid hsl(var(--heart-pink) / 0.3);
+  }
+
+  .valentine-button {
+    @apply px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--heart-pink)), hsl(var(--heart-red)));
+    color: white;
+    box-shadow: 0 4px 15px hsl(var(--heart-pink) / 0.4);
+  }
+
+  .valentine-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px hsl(var(--heart-pink) / 0.5);
+  }
+
+  .valentine-button:active {
+    transform: translateY(0);
+  }
+
+  .reason-card {
+    @apply p-6 rounded-2xl transition-all duration-500;
+    background: linear-gradient(135deg, hsl(var(--card)), hsl(var(--heart-light) / 0.5));
+    border: 2px solid hsl(var(--heart-pink) / 0.2);
+    box-shadow: 0 4px 20px hsl(var(--heart-pink) / 0.15);
+  }
+
+  .reason-card:hover {
+    box-shadow: 0 8px 30px hsl(var(--heart-pink) / 0.25);
+  }
+
+  .page-container {
+    @apply min-h-screen flex flex-col items-center justify-center p-4;
+    background: radial-gradient(ellipse at top, hsl(var(--heart-light)), hsl(var(--background)));
+  }
+}
+
+@layer utilities {
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulse-heart {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes fill-heart {
+    0% {
+      clip-path: inset(100% 0 0 0);
+    }
+    100% {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+
+  @keyframes sparkle {
+    0%, 100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes bounce-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    70% {
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-heart {
+    animation: pulse-heart 1.5s ease-in-out infinite;
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out forwards;
+  }
+
+  .heart-gradient {
+    background: linear-gradient(135deg, hsl(var(--heart-pink)), hsl(var(--heart-red)));
+  }
+
+  .text-romantic {
+    font-family: var(--font-romantic);
+  }
+
+  .font-romantic {
+    font-family: var(--font-romantic);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+}
